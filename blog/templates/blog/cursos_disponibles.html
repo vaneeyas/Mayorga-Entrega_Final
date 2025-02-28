@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+
+{% block title%}
+    Cursos Disponibles
+{% endblock title%}
+
+{% block content_title%}
+    <h2>Listado de Cursos Disponibles</h2>
+{% endblock content_title%}
+
+{% block content%}
+<a href="{% url 'agregar_curso' %}" class="btn btn-primary mb-3">Agregar Curso</a>
+<ul>
+    {% for cursos_disponibles in cursos %}
+       <li> Curso: {{ cursos_disponibles.nombre }} - Comisión: {{ cursos_disponibles.comision }}</li>
+       {% endfor %}
+</ul>
+
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+{% block title%}
+    Agregar Profesor
+{% endblock title%}
+
+{% block content_title%}
+    <h2>Formulario para agregar Profesores nuevos</h2>
+{% endblock content_title%}
+
+{% block content%}
+<form method="post">
+    {% csrf_token %}
+    <table>
+        {{ profesorForm.as_table }}
+    </table>
+    <input type="submit" value="Agregar Profesor">
+    <a href = "{% url 'profesores' %}">Cancelar</a>
+</form>
+
+{% endblock content %}

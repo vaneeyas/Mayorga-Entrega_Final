@@ -1,0 +1,19 @@
+{% extends 'blog/base.html' %}
+
+{% block title%}
+    Profesores
+{% endblock title%}
+
+{% block content_title%}
+    <h2>Listado de Profesores</h2>
+{% endblock content_title%}
+
+{% block content%}
+<a href="{% url 'agregar_profesor' %}" class="btn btn-primary mb-3">Agregar Profesor</a>
+<ul>
+    {% for profesor in profesores %}
+       <li>Nombre y Apellido: {{ profesor.nombre }} {{ profesor.apellido }} - Email: {{ profesor.email }} - Materia: {{ profesor.materia }}</li>
+       {% endfor %}
+</ul>
+
+{% endblock content %}

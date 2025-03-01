@@ -99,3 +99,17 @@ def agregar_estudiante(request):
         estudianteForm = EstudianteForm()
     return render(request, 'blog/agregar_estudiante.html', context={"estudianteForm": estudianteForm})  
 
+def detalle_estudiante (request, id):
+    estudiante = Estudiante.objects.get(id=id)
+    return render(request, "blog/detalle_estudiante.html", {"estudiante": estudiante})
+
+class EditarEstudiante(UpdateView):
+    model = Estudiante
+    template_name = "blog/editar_estudiante.html"
+    success_url = reverse_lazy("estudiantes")
+    form_class=EditarEstudianteForm
+    
+class BorrarEstudiante(DeleteView):
+    model = Estudiante
+    template_name = "blog/borrar_estudiante.html"
+    success_url = reverse_lazy("estudiantes")

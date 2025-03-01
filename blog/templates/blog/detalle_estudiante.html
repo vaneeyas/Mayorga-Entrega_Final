@@ -1,0 +1,20 @@
+{% extends 'blog/base.html' %}
+
+{% block title%}
+    Detalle Estudiante
+{% endblock title%}
+
+{% block content_title%}
+    <h2>Todos los detalles del Estudiante {{ profesores }}</h2>
+{% endblock content_title%}
+
+{% block content%}
+<ul>
+    <li>Nombre: {{ estudiante.nombre }}</li>
+    <li>Apellido: {{ estudiante.apellido }}</li>
+    <li>Email: {{ estudiante.email }}</li>
+    <li>Carrera: {{ estudiante.carrera }}</li>
+</ul>
+
+<a href = "{% url 'estudiantes' %}">Volver</a>
+{% endblock content %}

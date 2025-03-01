@@ -16,8 +16,12 @@
         <input type="text" name="busqueda" placeholder="Filtrar alumnos por carrera:" type="submit" class="form-control mb-3">
     </form>
     {% for estudiante in estudiantes %}
-       <li> Nombre y Apellido: {{ estudiante.nombre }} {{ estudiante.apellido }} - Email: {{ estudiante.email }} - Carrera: {{ estudiante.carrera }}</li>
-       {% endfor %}
+       <li> Nombre y Apellido: {{ estudiante.nombre }} {{ estudiante.apellido }} |
+             <a href = {% url 'detalle_estudiante' estudiante.id %}> Ver más </a>
+             <a href = {% url 'borrar_estudiante' estudiante.id %}> Borrar Estudiante </a>
+             <a href = {% url 'editar_estudiante' estudiante.id %}> Editar Estudiante </a>
+        </li>
+        {% endfor %}
 </ul>
 
 {% endblock content %}

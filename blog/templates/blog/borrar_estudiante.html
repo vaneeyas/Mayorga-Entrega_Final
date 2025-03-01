@@ -1,20 +1,20 @@
 {% extends 'blog/base.html' %}
 
 {% block title%}
-    Borrar Profesor
+    Borrar Estudiante
 {% endblock title%}
 
 {% block content_title%}
-    <h2>Formulario para borrar Profesores existentes</h2>
+    <h2>Formulario para borrar Estudiantes existentes</h2>
 {% endblock content_title%}
 
 {% block content%}
-<p>Borrar {{ profesor }} </p>
+<p>Borrar {{ estudiante }} </p>
 <form action="" method="POST">    
     {% csrf_token %}
-    <p>¿Está seguro de que desea borrar el profesor {{ profesor }}?</p>
+    <p>¿Está seguro de que desea borrar al estudiante  {{ estudiante }}?</p>
     <input type="submit" value="Confirmar">
-    <a href = "{% url 'profesores' %}">Cancelar</a>
+    <a href = "{% url 'estudiantes' %}">Cancelar</a>
 </form>
 
 {% endblock content %}

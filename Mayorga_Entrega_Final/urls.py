@@ -20,7 +20,7 @@ from django.urls import path, include
 from blog import views
 from blog.views import EditarCursos, detalle_curso, BorrarCursos
 from blog.views import detalle_profesor, EditarProfesor, BorrarProfesor
-
+from blog.views import detalle_estudiante, EditarEstudiante, BorrarEstudiante
 
 app_name="blog"
 
@@ -40,4 +40,7 @@ urlpatterns = [
     path("detalle_profesor.html/<int:id>/", detalle_profesor, name="detalle_profesor"),
     path("borrar_profesor/<int:pk>/", BorrarProfesor.as_view(), name="borrar_profesor"),
     path("editar_profesor/<int:pk>/", EditarProfesor.as_view(), name="editar_profesor"),
+    path("detalle_estudiante.html/<int:id>/", detalle_estudiante, name="detalle_estudiante"),
+    path("borrar_estudiante/<int:pk>/", BorrarEstudiante.as_view(), name="borrar_estudiante"),
+    path("editar_estudiante/<int:pk>/", EditarEstudiante.as_view(), name="editar_estudiante"),
 ]

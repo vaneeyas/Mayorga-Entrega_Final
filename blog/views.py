@@ -10,6 +10,7 @@ from .forms import EditarProfesorForm
 from .forms import EditarEstudianteForm
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 app_name="blog"
 
@@ -39,13 +40,13 @@ def detalle_curso (request, id):
     curso = Curso.objects.get(id=id)
     return render(request, "blog/detalle_curso.html", {"cursos_disponibles": curso})
 
-class EditarCursos(UpdateView):
+class EditarCursos(LoginRequiredMixin, UpdateView):
     model = Curso
     template_name = "blog/editar_curso.html"
     success_url = reverse_lazy("cursos_disponibles")
     form_class=EditarCursoForm
     
-class BorrarCursos(DeleteView):
+class BorrarCursos(LoginRequiredMixin, DeleteView):
     model = Curso
     template_name = "blog/borrar_curso.html"
     success_url = reverse_lazy("cursos_disponibles")
@@ -69,13 +70,13 @@ def detalle_profesor (request, id):
     profesor = Profesor.objects.get(id=id)
     return render(request, "blog/detalle_profesor.html", {"profesor": profesor})
 
-class EditarProfesor(UpdateView):
+class EditarProfesor(LoginRequiredMixin, UpdateView):
     model = Profesor
     template_name = "blog/editar_profesor.html"
     success_url = reverse_lazy("profesores")
     form_class=EditarProfesorForm
     
-class BorrarProfesor(DeleteView):
+class BorrarProfesor(LoginRequiredMixin, DeleteView):
     model = Profesor
     template_name = "blog/borrar_profesor.html"
     success_url = reverse_lazy("profesores")
@@ -103,13 +104,13 @@ def detalle_estudiante (request, id):
     estudiante = Estudiante.objects.get(id=id)
     return render(request, "blog/detalle_estudiante.html", {"estudiante": estudiante})
 
-class EditarEstudiante(UpdateView):
+class EditarEstudiante(LoginRequiredMixin, UpdateView):
     model = Estudiante
     template_name = "blog/editar_estudiante.html"
     success_url = reverse_lazy("estudiantes")
     form_class=EditarEstudianteForm
     
-class BorrarEstudiante(DeleteView):
+class BorrarEstudiante(LoginRequiredMixin, DeleteView):
     model = Estudiante
     template_name = "blog/borrar_estudiante.html"
     success_url = reverse_lazy("estudiantes")

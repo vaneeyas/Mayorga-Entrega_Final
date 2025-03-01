@@ -6,6 +6,8 @@ from .forms import CursoForm
 from .forms import ProfesorForm
 from .forms import EstudianteForm
 from .forms import EditarCursoForm
+from .forms import EditarProfesorForm
+from .forms import EditarEstudianteForm
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 
@@ -63,6 +65,20 @@ def agregar_profesor(request):
         profesorForm = ProfesorForm()
     return render(request, 'blog/agregar_profesor.html', context={"profesorForm": profesorForm})   
 
+def detalle_profesor (request, id):
+    profesor = Profesor.objects.get(id=id)
+    return render(request, "blog/detalle_profesor.html", {"profesor": profesor})
+
+class EditarProfesor(UpdateView):
+    model = Profesor
+    template_name = "blog/editar_profesor.html"
+    success_url = reverse_lazy("profesores")
+    form_class=EditarProfesorForm
+    
+class BorrarProfesor(DeleteView):
+    model = Profesor
+    template_name = "blog/borrar_profesor.html"
+    success_url = reverse_lazy("profesores")
 
 def estudiantes(request):
     busqueda = request.GET.get("busqueda", None)

@@ -12,7 +12,11 @@
 <a href="{% url 'agregar_profesor' %}" class="btn btn-primary mb-3">Agregar Profesor</a>
 <ul>
     {% for profesor in profesores %}
-       <li>Nombre y Apellido: {{ profesor.nombre }} {{ profesor.apellido }} - Email: {{ profesor.email }} - Materia: {{ profesor.materia }}</li>
+       <li>Nombre y Apellido: {{ profesor.nombre }} {{ profesor.apellido }} |
+            <a href = {% url 'detalle_profesor' profesor.id %}> Ver más </a>
+            <a href = {% url 'borrar_profesor' profesor.id %}> Borrar Profesor </a>
+            <a href = {% url 'editar_profesor' profesor.id %}> Editar Profesor </a>
+       </li>
        {% endfor %}
 </ul>
 

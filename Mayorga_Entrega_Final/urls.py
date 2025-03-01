@@ -19,6 +19,8 @@ from django.contrib import admin
 from django.urls import path, include
 from blog import views
 from blog.views import EditarCursos, detalle_curso, BorrarCursos
+from blog.views import detalle_profesor, EditarProfesor, BorrarProfesor
+
 
 app_name="blog"
 
@@ -35,4 +37,7 @@ urlpatterns = [
     path("detalle_curso/<int:id>/", detalle_curso, name="detalle_curso"),
     path("borrar_curso/<int:pk>/", BorrarCursos.as_view(), name="borrar_curso"),
     path("editar_curso/<int:pk>/", EditarCursos.as_view(), name="editar_curso"),
+    path("detalle_profesor.html/<int:id>/", detalle_profesor, name="detalle_profesor"),
+    path("borrar_profesor/<int:pk>/", BorrarProfesor.as_view(), name="borrar_profesor"),
+    path("editar_profesor/<int:pk>/", EditarProfesor.as_view(), name="editar_profesor"),
 ]

@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+
+{% block title%}
+    Detalle Curso
+{% endblock title%}
+
+{% block content_title%}
+    <h2>Todos los detalles del curso {{ cursos_disponibles }}</h2>
+{% endblock content_title%}
+
+{% block content%}
+<ul>
+    <li>Nombre: {{ cursos_disponibles.nombre }}</li>
+    <li>Comisión: {{ cursos_disponibles.comision }}</li>
+</ul>
+
+<a href = "{% url 'cursos_disponibles' %}">Volver</a>
+{% endblock content %}

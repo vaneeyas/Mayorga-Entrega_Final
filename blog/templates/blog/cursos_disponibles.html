@@ -12,7 +12,11 @@
 <a href="{% url 'agregar_curso' %}" class="btn btn-primary mb-3">Agregar Curso</a>
 <ul>
     {% for cursos_disponibles in cursos %}
-       <li> Curso: {{ cursos_disponibles.nombre }} - Comisión: {{ cursos_disponibles.comision }}</li>
+       <li> Curso: {{ cursos_disponibles.nombre }} |
+        <a href = {% url 'detalle_curso' cursos_disponibles.id %}> Ver más </a>
+        <a href = {% url 'borrar_curso' cursos_disponibles.id %}> Borrar Curso </a>
+        <a href = {% url 'editar_curso' cursos_disponibles.id %}> Editar Curso </a>
+       </li>
        {% endfor %}
 </ul>
 

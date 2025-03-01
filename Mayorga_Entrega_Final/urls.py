@@ -18,6 +18,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from blog import views
+from blog.views import EditarCursos
 
 app_name="blog"
 
@@ -27,7 +28,9 @@ urlpatterns = [
     path("index/", views.index, name="index"),
     path("about/", views.about, name="about"),
     path('pages/', include('blog.urls')),
+    path('usuarios/', include('autenticacion.urls')),
     path("agregar_curso/", views.agregar_curso, name="agregar_curso"),
     path("agregar_profesor/", views.agregar_profesor, name="agregar_profesor"),
     path("agregar_estudiante/", views.agregar_estudiante, name="agregar_estudiante"),
+    path("editar-curso/<int:pk>/", EditarCursos.as_view(), name="editar_curso"),
 ]

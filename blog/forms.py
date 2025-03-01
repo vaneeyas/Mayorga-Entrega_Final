@@ -17,3 +17,9 @@ class EstudianteForm(forms.ModelForm):
     class Meta:
         model= Estudiante
         fields = ['nombre', 'apellido', 'email', 'carrera']
+        
+class EditarCursoForm(forms.ModelForm):
+    
+    class Meta:
+        model = Curso
+        fields = "__all__"

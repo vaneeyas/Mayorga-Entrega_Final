@@ -5,6 +5,9 @@ from .models import Estudiante
 from .forms import CursoForm
 from .forms import ProfesorForm
 from .forms import EstudianteForm
+from .forms import EditarCursoForm
+from django.views.generic.edit import UpdateView
+from django.urls import reverse_lazy
 
 app_name="blog"
 
@@ -64,4 +67,19 @@ def agregar_estudiante(request):
             return redirect('estudiantes')
     else:
         estudianteForm = EstudianteForm()
-    return render(request, 'blog/agregar_estudiante.html', context={"estudianteForm": estudianteForm})   
+    return render(request, 'blog/agregar_estudiante.html', context={"estudianteForm": estudianteForm})  
+
+
+def borrar_curso(request, id):
+    curso=Curso.objects.get(id=id)
+    curso.delete()
+    return redirect('cursos_disponibles')
+
+#Pasar a Class(): ...
+
+class EditarCursos(UpdateView):
+    model = Curso
+    template_name = "editar_curso.html"
+    success_url = reverse_lazy("cursos_disponibles.html")
+    #fields = '__all__'
+    form_class=EditarCursoForm

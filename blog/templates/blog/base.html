@@ -231,12 +231,20 @@
             </ul>
         </li>
         <li><a href="/admin/">Panel de Administración</a></li>
+
+        {% if request.user.is_authenticated %} 
+        <li><a href="{#}">{{request.user.username}}</a></li>
         <li>
           <form action={% url 'logout' %} method="POST">
             {% csrf_token %}
             <input class="butt" type="submit" value="Cerrar Sesión">
           </form>
         </li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+        {% endif%}
+
+        
         </ul>
         <div class="menu-toggle" onclick="toggleMenu()">
           <div></div>

@@ -207,35 +207,50 @@
 </head>
 <body>
     
-    <nav>
-      <div class="menu">
-        <ul id="menuItems">
-          <li><a href="/index/">Inicio</a></li>
-          <li><a href="/about/">Acerca de mí</a></li>
-          <li class="submenu">
-            <a href="#">Páginas</a>
-            <ul>
-              <li><a href="{% url 'profesores' %}">Profesores</a></li>
-              <li><a href="{% url 'cursos_disponibles' %}">Cursos</a></li>
-              <li><a href="{% url 'estudiantes' %}">Estudiantes</a></li>
-            </ul>
-        </li>
-          <li><a href="/admin/">Panel de Administración</a></li>
-        </ul>
-        <div class="menu-toggle" onclick="toggleMenu()">
-          <div></div>
-          <div></div>
-          <div></div>
-        </div>
+  <nav>
+    <div class="menu">
+      <ul id="menuItems">
+        <li><a href="/index/">Inicio</a></li>
+        <li><a href="/about/">Acerca de mí</a></li>
+        <li class="submenu">
+          <a href="#">Páginas</a>
+          <ul>
+            <li><a href="{% url 'profesores' %}">Profesores</a></li>
+            <li><a href="{% url 'cursos_disponibles' %}">Cursos</a></li>
+            <li><a href="{% url 'estudiantes' %}">Estudiantes</a></li>
+          </ul>
+      </li>
+      <li><a href="/admin/">Panel de Administración</a></li>
+
+      {% if request.user.is_authenticated %} 
+      <li><a href="{#}">{{request.user.username}}</a></li>
+      <li>
+        <form action={% url 'logout' %} method="POST">
+          {% csrf_token %}
+          <input class="butt" type="submit" value="Cerrar Sesión">
+        </form>
+      </li>
+      {% else %}
+        <li><a href="{% url 'login' %}">Iniciar Sesión</a></li>
+        <li><a href="{% url 'registrar' %}">Registrarse</a></li>
+      {% endif%}
+
+      
+      </ul>
+      <div class="menu-toggle" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
       </div>
-    </nav>
-    
-    <script>
-      function toggleMenu() {
-          const menuItems = document.getElementById('menuItems');
-          menuItems.classList.toggle('show');
-      }
-    </script>
+    </div>
+  </nav>
+  
+  <script>
+    function toggleMenu() {
+        const menuItems = document.getElementById('menuItems');
+        menuItems.classList.toggle('show');
+    }
+  </script>
 
     <div class="content">
         {% block content_title%}

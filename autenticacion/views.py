@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login as django_login
 from autenticacion.forms import UnRegistro
+from django.contrib.auth.decorators import login_required
 
 def login(request):
     if request.method == "POST":
@@ -23,3 +24,11 @@ def registrar(request):
     else:
         formulario = UnRegistro()
     return render(request, "autenticacion/registrar.html", {"formulario": formulario})
+
+@login_required
+def profile(request):
+    context = {
+        'user': request.user,
+        'profile': request.user.profile  # si querés mostrar el perfil extendido
+    }
+    return render(request, 'autenticacion/profile.html', context)

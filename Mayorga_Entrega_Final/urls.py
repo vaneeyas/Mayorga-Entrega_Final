@@ -21,6 +21,9 @@ from blog import views
 from blog.views import EditarCursos, detalle_curso, BorrarCursos
 from blog.views import detalle_profesor, EditarProfesor, BorrarProfesor
 from blog.views import detalle_estudiante, EditarEstudiante, BorrarEstudiante
+from django.conf import settings
+from django.conf.urls.static import static
+from autenticacion.views import profile
 
 app_name="blog"
 
@@ -43,4 +46,8 @@ urlpatterns = [
     path("detalle_estudiante.html/<int:id>/", detalle_estudiante, name="detalle_estudiante"),
     path("borrar_estudiante/<int:pk>/", BorrarEstudiante.as_view(), name="borrar_estudiante"),
     path("editar_estudiante/<int:pk>/", EditarEstudiante.as_view(), name="editar_estudiante"),
+    path('profile/', profile, name='profile'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

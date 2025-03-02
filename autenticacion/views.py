@@ -26,17 +26,12 @@ def registrar(request):
         form = UnRegistro()
     return render(request, "autenticacion/registrar.html", {"form": form})
 
-def profile(request):
-    context = {
-        'user': request.user,
-        'profile': request.user.profile  # si usas un perfil extendido
-    }
-    return render(request, 'autenticacion/profile.html', context)
-
 @login_required
 def profile(request):
+    profile = request.user.profile
+
     context = {
         'user': request.user,
-        'profile': request.user.profile  # si querés mostrar el perfil extendido
+        'profile': profile,
     }
     return render(request, 'autenticacion/profile.html', context)

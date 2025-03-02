@@ -11,7 +11,7 @@
 {% block content%}
 <form action = {% url "registrar" %} method="post">
     {% csrf_token %}
-    {{ formulario }}
+    {{ form }}
 
     <input type="submit" value="Registrar">
 </form>

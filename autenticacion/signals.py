@@ -4,10 +4,6 @@ from django.dispatch import receiver
 from .models import Profile
 
 @receiver(post_save, sender=User)
-def crear_perfil(sender, instance, created, **kwargs):
-    if created:
+def crear_profile(sender, instance, created, **kwargs):
+    if created and not hasattr(instance, 'profile'):
         Profile.objects.create(user=instance)
-
-@receiver(post_save, sender=User)
-def guardar_perfil(sender, instance, **kwargs):
-    instance.profile.save()

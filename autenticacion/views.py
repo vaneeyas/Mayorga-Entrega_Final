@@ -3,6 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import login as django_login
 from autenticacion.forms import UnRegistro
 from django.contrib.auth.decorators import login_required
+from .models import Profile
 
 def login(request):
     if request.method == "POST":
@@ -17,13 +18,20 @@ def login(request):
 
 def registrar(request):
     if request.method == "POST":
-        formulario = UnRegistro(request.POST)
-        if formulario.is_valid():
-            formulario.save()
+        form = UnRegistro(request.POST)
+        if form.is_valid():
+            user = form.save()
             return redirect("login")
     else:
-        formulario = UnRegistro()
-    return render(request, "autenticacion/registrar.html", {"formulario": formulario})
+        form = UnRegistro()
+    return render(request, "autenticacion/registrar.html", {"form": form})
+
+def profile(request):
+    context = {
+        'user': request.user,
+        'profile': request.user.profile  # si usas un perfil extendido
+    }
+    return render(request, 'autenticacion/profile.html', context)
 
 @login_required
 def profile(request):

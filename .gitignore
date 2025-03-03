@@ -169,3 +169,10 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# Archivos de base de datos local
+db.sqlite3
+
+# Archivos estáticos y media subidos por usuarios
+staticfiles/
+media/

@@ -17,7 +17,7 @@ Perfil
     <p><strong>Apellido:</strong> {{ user.last_name }}</p>
     <p><strong>Fecha de nacimiento:</strong> {{ profile.fecha_nacimiento|date:"d/m/Y" }}</p>
     <p><strong>Biografía:</strong></p>
-    <p>{{ profile.bio|default:"Sin biografía aún." }}</p>
+    <p>{{ profile.biografia|default:"Todavía no has escrito tu biografía." }}</p>
   
     <form action={% url 'editar_perfil' %}>
       {% csrf_token %}
@@ -26,7 +26,15 @@ Perfil
 
     <p></p>
     <p></p>
-    
+
+    <form action={% url 'cambiar_password' %}>
+      {% csrf_token %}
+      <input class="butt" type="submit" value="Cambiar Contraseña">
+    </form>
+
+    <p></p>
+    <p></p>
+
     <form action={% url 'logout' %} method="POST">
       {% csrf_token %}
       <input class="butt" type="submit" value="Cerrar Sesión">

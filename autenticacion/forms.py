@@ -28,7 +28,15 @@ class UnRegistro(UserCreationForm):
             profile.save()
         return user
  
- 
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['avatar', 'fecha_nacimiento', 'biografia']  
+        widgets = {
+            'fecha_nacimiento': forms.DateInput(attrs={'type': 'date'}),
+            'biografia': forms.Textarea(attrs={'rows': 3}) 
+        }
+        
 class EditaUnPerfil(UserChangeForm):
     password = None
     email = forms.EmailField(required=False)
@@ -42,4 +50,4 @@ class EditaUnPerfil(UserChangeForm):
 class EditarPerfilExtendido(forms.ModelForm):
     class Meta:
         model = Profile
-        fields = ['fecha_nacimiento', 'avatar']
+        fields = ['fecha_nacimiento', 'avatar', 'biografia']

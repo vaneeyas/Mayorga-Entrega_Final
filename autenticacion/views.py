@@ -4,6 +4,8 @@ from django.contrib.auth import login as django_login
 from autenticacion.forms import UnRegistro, EditaUnPerfil, EditarPerfilExtendido
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
 
 def login(request):
     if request.method == "POST":
@@ -60,3 +62,7 @@ def editar_perfil(request):
         'form_profile': form_profile
     }
     return render(request, 'autenticacion/editar_perfil.html', context)
+
+class CambiarContraseña(PasswordChangeView):
+    template_name = 'autenticacion/cambiar_password.html'
+    success_url = reverse_lazy('profile')

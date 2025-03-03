@@ -1,20 +1,30 @@
 {% extends 'blog/base.html' %}
 
-{% block title%}
+{% block title %}
     Borrar Profesor
-{% endblock title%}
+{% endblock title %}
 
-{% block content_title%}
-    <h2>Formulario para borrar Profesores existentes</h2>
-{% endblock content_title%}
+{% block content_title %}
+    <h2 class="mt-4">Formulario para borrar Profesores existentes</h2>
+{% endblock content_title %}
 
-{% block content%}
-<p>Borrar {{ profesor }} </p>
-<form action="" method="POST">    
-    {% csrf_token %}
-    <p>¿Está seguro de que desea borrar el profesor {{ profesor }}?</p>
-    <input type="submit" value="Confirmar">
-    <a href = "{% url 'profesores' %}">Cancelar</a>
-</form>
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h4 class="text-danger">¡Advertencia!</h4>
+            <p>Estás a punto de borrar al profesor <strong>{{ profesor }}</strong>.</p>
+            <p class="text-warning">¿Está seguro de que desea proceder con la eliminación de este profesor?</p>
 
+            <form action="" method="POST" class="mt-3">
+                {% csrf_token %}
+                
+                <div class="d-flex justify-content-between mt-4">
+                    <a href="{% url 'profesores' %}" class="btn btn-secondary">Cancelar</a>
+                    <input type="submit" value="Confirmar Borrado" class="btn btn-danger">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock content %}

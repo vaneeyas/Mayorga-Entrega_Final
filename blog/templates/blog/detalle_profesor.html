@@ -9,12 +9,20 @@
 {% endblock content_title%}
 
 {% block content%}
-<ul>
-    <li>Nombre: {{ profesor.nombre }}</li>
-    <li>Apellido: {{ profesor.apellido }}</li>
-    <li>Email: {{ profesor.email }}</li>
-    <li>Materia: {{ profesor.materia }}</li>
-</ul>
-
-<a href = "{% url 'profesores' %}">Volver</a>
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h4 class="text-center mb-4">Información del Profesor</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Nombre:</strong> {{ profesor.nombre }}</li>
+                <li class="list-group-item"><strong>Apellido:</strong> {{ profesor.apellido }}</li>
+                <li class="list-group-item"><strong>Email:</strong> {{ profesor.email }}</li>
+                <li class="list-group-item"><strong>Materia:</strong> {{ profesor.materia }}</li>
+            </ul>
+            <div class="d-flex justify-content-between mt-4">
+                <a href="{% url 'profesores' %}" class="btn btn-secondary">Volver</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

@@ -1,19 +1,28 @@
 {% extends 'blog/base.html' %}
 
-{% block title%}
+{% block title %}
     Detalle Curso
-{% endblock title%}
+{% endblock title %}
 
-{% block content_title%}
-    <h2>Todos los detalles del curso {{ cursos_disponibles }}</h2>
-{% endblock content_title%}
+{% block content_title %}
+    <h2 class="mt-4">Detalles del Curso: <strong>{{ cursos_disponibles.nombre }}</strong></h2>
+{% endblock content_title %}
 
-{% block content%}
-<ul>
-    <li>Nombre: {{ cursos_disponibles.nombre }}</li>
-    <li>Comisión: {{ cursos_disponibles.comision }}</li>
-    <li>Fecha de Creación: {{ cursos_disponibles.fecha_creacion }}</li>
-</ul>
-
-<a href = "{% url 'cursos_disponibles' %}">Volver</a>
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <h4 class="text-center mb-4">Información del Curso</h4>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Nombre:</strong> {{ cursos_disponibles.nombre }}</li>
+                <li class="list-group-item"><strong>Comisión:</strong> {{ cursos_disponibles.comision }}</li>
+                <li class="list-group-item"><strong>Fecha de Creación:</strong> {{ cursos_disponibles.fecha_creacion }}</li>
+            </ul>
+            
+            <div class="d-flex justify-content-between mt-4">
+                <a href="{% url 'cursos_disponibles' %}" class="btn btn-secondary">Volver</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock content %}

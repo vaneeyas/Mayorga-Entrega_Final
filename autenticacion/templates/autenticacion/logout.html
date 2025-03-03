@@ -5,13 +5,14 @@
 {% endblock title%}
     
 {% block content_title%}
-    <h2>Te deslogueaste exitosamente!</h2>
+    <h2 class="text-center my-4">Sesión Cerrada</h2>
 {% endblock content_title%}
+
 {% block content%}
-<p></p>
-<p></p>
-<p></p>
-
-<p style="text-align: justify; margin: 20px;">Si querés volver, tenés que volver a iniciar sesión</p>
-
+<div class="container text-center mt-4">
+    <p class="fs-5">Te deslogueaste exitosamente.</p>
+    <p class="fs-6 text-muted">Si querés volver a navegar, por favor inicia sesión nuevamente.</p>
+    
+    <a href="{% url 'login' %}" class="btn btn-primary mt-3">Volver a Iniciar Sesión</a>
+</div>
 {% endblock content %}

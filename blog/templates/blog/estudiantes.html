@@ -5,29 +5,50 @@
 {% endblock title%}
 
 {% block content_title%}
-    <h2>Listado de Estudiantes</h2>
+    <h2 class="my-4 text-primary">Listado de Estudiantes</h2>
 {% endblock content_title%}
 
 {% block content%}
-<ul>
-    <a href="{% url 'agregar_estudiante' %}" class="btn btn-primary mb-3">Agregar Estudiante</a>
+<div class="container">
 
-    <form action="{% url 'estudiantes' %}" method="get">
-        <input type="text" name="busqueda" placeholder="Filtrar alumnos por carrera:" value="{{ busqueda }}" class="form-control mb-3">
-        <button type="submit" class="btn btn-primary">Buscar</button>
+    <div class="text-end mb-3">
+        <a href="{% url 'agregar_estudiante' %}" class="btn btn-success">➕ Agregar Estudiante</a>
+    </div>
+
+    <form action="{% url 'estudiantes' %}" method="get" class="input-group mb-4">
+        <input type="text" name="busqueda" placeholder="Filtrar alumnos por carrera:" value="{{ busqueda }}" class="form-control">
+        <button type="submit" class="btn btn-primary">🔎 Buscar</button>
     </form>
-    
+
     {% if no_resultados %}
-        <p class="text-danger">No hay coincidencias con el criterio de búsqueda: <strong>{{ busqueda }}</strong></p>
+        <div class="alert alert-warning" role="alert">
+            No hay coincidencias con el criterio de búsqueda: <strong>{{ busqueda }}</strong>
+        </div>
     {% endif %}
 
-    {% for estudiante in estudiantes %}
-       <li> Nombre y Apellido: {{ estudiante.nombre }} {{ estudiante.apellido }} |
-             <a href = {% url 'detalle_estudiante' estudiante.id %}> Ver más </a>
-             <a href = {% url 'borrar_estudiante' estudiante.id %}> Borrar Estudiante </a>
-             <a href = {% url 'editar_estudiante' estudiante.id %}> Editar Estudiante </a>
-        </li>
-    {% endfor %}
-</ul>
-
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for estudiante in estudiantes %}
+                    <tr>
+                        <td>{{ estudiante.nombre }}</td>
+                        <td>{{ estudiante.apellido }}</td>
+                        <td>
+                            <a href="{% url 'detalle_estudiante' estudiante.id %}" class="btn btn-info btn-sm">👀 Ver</a>
+                            <a href="{% url 'editar_estudiante' estudiante.id %}" class="btn btn-warning btn-sm">✏️ Editar</a>
+                            <a href="{% url 'borrar_estudiante' estudiante.id %}" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que querés eliminar a {{ estudiante.nombre }}?')">🗑️ Borrar</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock content %}

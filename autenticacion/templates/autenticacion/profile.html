@@ -1,44 +1,40 @@
 {% extends 'blog/base.html' %}
 
-
 {% block title%}
-Perfil
+    Perfil de Usuario
 {% endblock title%}
 
 {% block content%}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Perfil de {{ request.user.username }}</h2>
 
-<div class="perfil-container">
-    
-    <h2>Perfil de {{ request.user.username }}</h2>
+    <div class="card shadow-lg mx-auto" style="max-width: 600px;">
+        <div class="card-body text-center">
+            <img src="{{ profile.avatar.url }}" alt="Foto de perfil" class="rounded-circle mb-3" style="width: 120px; height: 120px; object-fit: cover;">
 
-    <img src="{{ profile.avatar.url }}" alt="Foto de perfil">
-    <p><strong>Email:</strong> {{ user.email }}</p>
-    <p><strong>Nombre:</strong> {{ user.first_name }}</p>
-    <p><strong>Apellido:</strong> {{ user.last_name }}</p>
-    <p><strong>Fecha de nacimiento:</strong> {{ profile.fecha_nacimiento|date:"d/m/Y" }}</p>
-    <p><strong>Biografía:</strong></p>
-    <p>{{ profile.biografia|default:"Todavía no has escrito tu biografía." }}</p>
-  
-    <form action={% url 'editar_perfil' %}>
-      {% csrf_token %}
-      <input class="butt" type="submit" value="Editar Perfil">
-    </form>
+            <ul class="list-group text-start mb-4">
+                <li class="list-group-item"><strong>Email:</strong> {{ user.email }}</li>
+                <li class="list-group-item"><strong>Nombre:</strong> {{ user.first_name|default:"-" }}</li>
+                <li class="list-group-item"><strong>Apellido:</strong> {{ user.last_name|default:"-" }}</li>
+                <li class="list-group-item"><strong>Fecha de nacimiento:</strong> {{ profile.fecha_nacimiento|date:"d/m/Y" }}</li>
+                <li class="list-group-item"><strong>Biografía:</strong> {{ profile.biografia|default:"Todavía no has escrito tu biografía." }}</li>
+            </ul>
 
-    <p></p>
-    <p></p>
+            <div class="d-grid gap-3">
+                <form action={% url 'editar_perfil' %} method="GET">
+                    <button type="submit" class="btn btn-outline-primary">Editar Perfil</button>
+                </form>
 
-    <form action={% url 'cambiar_password' %}>
-      {% csrf_token %}
-      <input class="butt" type="submit" value="Cambiar Contraseña">
-    </form>
+                <form action={% url 'cambiar_password' %} method="GET">
+                    <button type="submit" class="btn btn-outline-warning">Cambiar Contraseña</button>
+                </form>
 
-    <p></p>
-    <p></p>
-
-    <form action={% url 'logout' %} method="POST">
-      {% csrf_token %}
-      <input class="butt" type="submit" value="Cerrar Sesión">
-    </form>
+                <form action={% url 'logout' %} method="POST">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-danger">Cerrar Sesión</button>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
-
 {% endblock content %}

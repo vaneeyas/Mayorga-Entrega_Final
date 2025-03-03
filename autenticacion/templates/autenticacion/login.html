@@ -1,19 +1,39 @@
 {% extends 'blog/base.html' %}
 
-{% block title%}
+{% block title %}
     Login
-{% endblock title%}
+{% endblock title %}
 
-{% block content_title%}
-    <h2>Login de Usuario</h2>
-{% endblock content_title%}
+{% block content_title %}
+    <h2 class="text-center mt-4">Login de Usuario</h2>
+{% endblock content_title %}
 
-{% block content%}
-<form action = {% url "login" %} method="post">
-    {% csrf_token %}
-    {{ formulario }}
+{% block content %}
+<div class="container mt-4">
+    <div class="card shadow-sm p-4">
+        <form action="{% url 'login' %}" method="post" class="needs-validation">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="id_username" class="form-label">Usuario:</label>
+                {{ formulario.username }}
+            </div>
 
-    <input type="submit" value="Login">
-</form>
+            <div class="mb-3">
+                <label for="id_password" class="form-label">Contraseña:</label>
+                {{ formulario.password }}
+            </div>
 
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                <a href="{% url 'index' %}" class="btn btn-secondary ms-2">Cancelar</a>
+            </div>
+        </form>
+
+        <div class="text-center mt-3">
+            <p>¿No tenés cuenta? <a href="{% url 'registrar' %}">Registrate aquí</a></p>
+            
+        </div>
+    </div>
+</div>
 {% endblock content %}

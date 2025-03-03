@@ -1,19 +1,36 @@
 {% extends 'blog/base.html' %}
 
 {% block title%}
-    Registrar
+    Registro de Usuario
 {% endblock title%}
 
-{% block content_title%}
-    <h2>Registrar Usuario</h2>
-{% endblock content_title%}
-
 {% block content%}
-<form action = {% url "registrar" %} method="post">
-    {% csrf_token %}
-    {{ form }}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Registrar Nuevo Usuario</h2>
 
-    <input type="submit" value="Registrar">
-</form>
+    <div class="card shadow-lg mx-auto" style="max-width: 500px;">
+        <div class="card-body">
+            <form action="{% url 'registrar' %}" method="post" class="row g-3">
+                {% csrf_token %}
 
+                {% for field in form %}
+                    <div class="col-12">
+                        <label class="form-label fw-bold">{{ field.label }}</label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <div class="text-danger small">
+                                {{ field.errors|striptags }}
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+                <div class="d-grid gap-2 mt-3">
+                    <button type="submit" class="btn btn-success">Registrar</button>
+                    <a href="{% url 'login' %}" class="btn btn-outline-secondary">Cancelar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock content %}

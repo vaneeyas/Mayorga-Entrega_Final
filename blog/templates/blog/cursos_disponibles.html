@@ -1,23 +1,44 @@
 {% extends 'blog/base.html' %}
 
-{% block title%}
+{% block title %}
     Cursos Disponibles
-{% endblock title%}
+{% endblock title %}
 
-{% block content_title%}
-    <h2>Listado de Cursos Disponibles</h2>
-{% endblock content_title%}
+{% block content_title %}
+    <h2 class="my-4 text-primary">Listado de Cursos Disponibles</h2>
+{% endblock content_title %}
 
-{% block content%}
-<a href="{% url 'agregar_curso' %}" class="btn btn-primary mb-3">Agregar Curso</a>
-<ul>
-    {% for cursos_disponibles in cursos %}
-       <li> Curso: {{ cursos_disponibles.nombre }} |
-        <a href = {% url 'detalle_curso' cursos_disponibles.id %}> Ver más </a>
-        <a href = {% url 'borrar_curso' cursos_disponibles.id %}> Borrar Curso </a>
-        <a href = {% url 'editar_curso' cursos_disponibles.id %}> Editar Curso </a>
-       </li>
-       {% endfor %}
-</ul>
+{% block content %}
+<div class="container">
+    <div class="text-end mb-3">
+        <a href="{% url 'agregar_curso' %}" class="btn btn-success">➕ Agregar Curso</a>
+    </div>
 
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="table-dark">
+                <tr>
+                    <th>Nombre del Curso</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for curso in cursos %}
+                    <tr>
+                        <td>{{ curso.nombre }}</td>
+                        <td>
+                            <a href="{% url 'detalle_curso' curso.id %}" class="btn btn-info btn-sm">👀 Ver</a>
+                            <a href="{% url 'editar_curso' curso.id %}" class="btn btn-warning btn-sm">✏️ Editar</a>
+                            <a href="{% url 'borrar_curso' curso.id %}" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que querés eliminar el curso {{ curso.nombre }}?')">🗑️ Borrar</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="2" class="text-center text-muted">No hay cursos disponibles.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
 {% endblock content %}

@@ -23,4 +23,4 @@ class Estudiante(models.Model):
     email = models.EmailField() 
     carrera = models.CharField(max_length=100, default='Sistemas')
     
-    def __str__(self): return f"{self.nombre} {self.apellido} {self.carrera}" 
+    def __str__(self): return f"{self.nombre} {self.apellido}" 

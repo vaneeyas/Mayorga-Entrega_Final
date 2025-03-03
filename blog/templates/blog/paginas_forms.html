@@ -1,0 +1,38 @@
+{% extends 'blog/base.html' %}
+
+{% block title%}
+    Página de formularios
+{% endblock title%}
+    
+{% block content_title%}
+    <h2>Contenedor de Formularios</h2>
+{% endblock content_title%}
+{% block content%}
+<p></p>
+<p></p>
+<p></p>
+
+<form action={% url 'profesores' %} method="POST">
+    {% csrf_token %}
+    <input class="butt" type="submit" value="Profesores">
+</form>
+
+<p></p>
+<p></p>
+<p></p>
+
+<form action={% url 'cursos_disponibles' %} method="POST">
+    {% csrf_token %}
+    <input class="butt" type="submit" value="Cursos Disponibles">
+</form>
+
+<p></p>
+<p></p>
+<p></p>
+
+<form action={% url 'estudiantes' %} method="POST">
+    {% csrf_token %}
+    <input class="butt" type="submit" value="Estudiantes">
+</form>
+
+{% endblock content %}

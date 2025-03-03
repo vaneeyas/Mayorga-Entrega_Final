@@ -34,6 +34,7 @@ urlpatterns = [
     path("about/", views.about, name="about"),
     path('pages/', include('blog.urls')),
     path('usuarios/', include('autenticacion.urls')),
+    path("paginas_forms/", views.paginas_forms, name="paginas_forms"),
     path("agregar_curso/", views.agregar_curso, name="agregar_curso"),
     path("agregar_profesor/", views.agregar_profesor, name="agregar_profesor"),
     path("agregar_estudiante/", views.agregar_estudiante, name="agregar_estudiante"),

@@ -21,6 +21,9 @@ def index(request):
 def about(request):
     return render(request, 'blog/about.html')
 
+def paginas_forms(request):
+    return render(request, 'blog/paginas_forms.html')
+
 def cursos_disponibles(request):
     curso = Curso.objects.all()
     return render(request, 'blog/cursos_disponibles.html', context={"cursos": curso})

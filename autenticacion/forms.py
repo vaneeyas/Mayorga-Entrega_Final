@@ -1,4 +1,4 @@
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django import forms
 from django.contrib.auth.models import User
 from .models import Profile
@@ -12,9 +12,6 @@ class UnRegistro(UserCreationForm):
     first_name = forms.CharField(label="Nombre", required=False)
     last_name = forms.CharField(label="Apellido", required=False)
     fecha_nacimiento = forms.DateField(required=False, widget=forms.DateInput(attrs={'type': 'date'}))
-    # first_name= forms.CharField(label="Nombre", required=True)
-    # last_name= forms.CharField(label="Apellido", required=True)
-    # fecha_nacimiento = forms.DateField(widget=forms.DateInput(attrs={'type': 'date'}), required=False)  # <-- esto es clave!
 
     
     class Meta:
@@ -31,3 +28,18 @@ class UnRegistro(UserCreationForm):
             profile.save()
         return user
  
+ 
+class EditaUnPerfil(UserChangeForm):
+    password = None
+    email = forms.EmailField(required=False)
+    first_name = forms.CharField(label="Nombre", required=False)
+    last_name = forms.CharField(label="Apellido", required=False)
+    
+    class Meta:
+        model = User
+        fields = ['email','first_name', 'last_name']
+
+class EditarPerfilExtendido(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['fecha_nacimiento', 'avatar']

@@ -117,3 +117,6 @@ class BorrarEstudiante(LoginRequiredMixin, DeleteView):
     model = Estudiante
     template_name = "blog/borrar_estudiante.html"
     success_url = reverse_lazy("estudiantes")
+    
+def pagina_no_encontrada(request, exception):
+    return render(request, '404.html', status=404)

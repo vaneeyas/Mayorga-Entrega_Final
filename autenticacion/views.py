@@ -66,3 +66,6 @@ def editar_perfil(request):
 class CambiarContraseña(PasswordChangeView):
     template_name = 'autenticacion/cambiar_password.html'
     success_url = reverse_lazy('profile')
+    
+def pagina_no_encontrada(request, exception):
+    return render(request, 'autenticacion/404.html', status=404)

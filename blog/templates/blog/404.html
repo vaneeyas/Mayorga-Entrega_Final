@@ -1,0 +1,18 @@
+{% extends 'blog/base.html' %}
+
+{% block title%}
+    Página no encontrada
+{% endblock title%}
+    
+{% block content_title%}
+    <h2>Ups! No encontramos la página que estás buscando </h2>
+{% endblock content_title%}
+{% block content%}
+<p></p>
+<p></p>
+<p></p>
+
+<p>Lo sentimos, la página que estás buscando no existe.</p>
+<a href="{% url 'index' %}">Volver al inicio</a>
+
+{% endblock content %}

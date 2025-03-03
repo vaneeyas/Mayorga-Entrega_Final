@@ -22,6 +22,5 @@ class Estudiante(models.Model):
     apellido = models.CharField(max_length=100) 
     email = models.EmailField() 
     carrera = models.CharField(max_length=100, default='Sistemas')
-    #imagen = models.ImageField(upload_to='productos/')
     
     def __str__(self): return f"{self.nombre} {self.apellido} {self.carrera}" 

@@ -85,12 +85,20 @@ class BorrarProfesor(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy("profesores")
 
 def estudiantes(request):
-    busqueda = request.GET.get("busqueda", None)
+    busqueda = request.GET.get('busqueda', '').strip()
+    estudiantes = Estudiante.objects.all()
+
     if busqueda:
-        estudiante = Estudiante.objects.filter(carrera__icontains=busqueda)
-    else:
-        estudiante = Estudiante.objects.all()
-    return render(request, 'blog/estudiantes.html', context={"estudiantes": estudiante})
+        estudiantes = estudiantes.filter(carrera__icontains=busqueda)
+
+    contexto = {
+        'estudiantes': estudiantes,
+        'busqueda': busqueda,
+        'no_resultados': not estudiantes.exists() and busqueda != ""
+    }
+
+    return render(request, 'blog/estudiantes.html', contexto)
+
 
 def agregar_estudiante(request):
     if request.method=="POST":

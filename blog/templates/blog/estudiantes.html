@@ -13,15 +13,21 @@
     <a href="{% url 'agregar_estudiante' %}" class="btn btn-primary mb-3">Agregar Estudiante</a>
 
     <form action="{% url 'estudiantes' %}" method="get">
-        <input type="text" name="busqueda" placeholder="Filtrar alumnos por carrera:" type="submit" class="form-control mb-3">
+        <input type="text" name="busqueda" placeholder="Filtrar alumnos por carrera:" value="{{ busqueda }}" class="form-control mb-3">
+        <button type="submit" class="btn btn-primary">Buscar</button>
     </form>
+    
+    {% if no_resultados %}
+        <p class="text-danger">No hay coincidencias con el criterio de búsqueda: <strong>{{ busqueda }}</strong></p>
+    {% endif %}
+
     {% for estudiante in estudiantes %}
        <li> Nombre y Apellido: {{ estudiante.nombre }} {{ estudiante.apellido }} |
              <a href = {% url 'detalle_estudiante' estudiante.id %}> Ver más </a>
              <a href = {% url 'borrar_estudiante' estudiante.id %}> Borrar Estudiante </a>
              <a href = {% url 'editar_estudiante' estudiante.id %}> Editar Estudiante </a>
         </li>
-        {% endfor %}
+    {% endfor %}
 </ul>
 
 {% endblock content %}

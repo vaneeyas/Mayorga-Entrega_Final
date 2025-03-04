@@ -5,15 +5,21 @@
 {% endblock title%}
 
 {% block content_title%}
-    <h2>Formulario para editar Cursos</h2>
+    <h2 class="text-center my-4">Formulario para editar Cursos</h2>
 {% endblock content_title%}
 
 {% block content%}
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Editar Curso">
-    <a href = "{% url 'cursos_disponibles' %}">Cancelar</a>
-</form>
+<div class="container mt-4">
+    <form action="" method="post" class="card p-4 shadow-sm">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form }}
+        </div>
+
+        <div class="text-center mt-4">
+            <input type="submit" class="btn btn-success" value="Editar Curso">
+            <a href="{% url 'cursos_disponibles' %}" class="btn btn-secondary ms-2">Cancelar</a>
+        </div>
+    </form>
 
 {% endblock content %}

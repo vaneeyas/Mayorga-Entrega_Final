@@ -9,11 +9,16 @@
 {% endblock content_title%}
 
 {% block content%}
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Editar Estudiante">
-    <a href = "{% url 'estudiantes' %}">Cancelar</a>
-</form>
-
+<div class="container mt-4">
+    <form action="" method="post" class="card p-4 shadow-sm">
+        {% csrf_token %}
+        <div class="mb-3">
+            {{ form }}
+        </div>
+        <div class="text-center mt-4">
+            <input type="submit" class="btn btn-success" value="Editar Estudiante">
+            <a href = "{% url 'estudiantes' %} class="btn btn-secondary ms-2"">Cancelar</a>
+        </div>
+    </form>
+</div>
 {% endblock content %}

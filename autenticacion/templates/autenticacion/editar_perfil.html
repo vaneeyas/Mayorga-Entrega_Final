@@ -4,12 +4,13 @@
     Editar
 {% endblock title%}
 
-{% block content_title%}
-    <h2>Editar Perfil</h2>
-{% endblock content_title%}
+{% block content_title %}
+    <h2 class="text-center my-4">Editar Perfil</h2>
+{% endblock content_title %}
 
 {% block content%}
-<form action="{% url 'editar_perfil' %}" method="post" enctype="multipart/form-data">
+<div class="container mt-4">
+    <form action="{% url 'editar_perfil' %}" method="post" enctype="multipart/form-data" class="card p-4 shadow-sm">
     {% csrf_token %}
 
     <fieldset>
@@ -22,7 +23,26 @@
         {{ form_profile.as_p }}
     </fieldset>
 
-    <input type="submit" value="Guardar cambios">
-</form>
-
+    <div class="text-center mt-4">
+        <button type="submit" class="btn btn-success">Guardar Cambios</button>
+        <a href="{% url 'profile' %}" class="btn btn-secondary ms-2">Cancelar</a>
+    </form>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    </div>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+</div>
 {% endblock content %}

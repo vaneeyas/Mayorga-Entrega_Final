@@ -11,6 +11,7 @@ from .forms import EditarEstudianteForm
 from django.views.generic.edit import UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 
 app_name="blog"
 
@@ -28,6 +29,7 @@ def cursos_disponibles(request):
     curso = Curso.objects.all()
     return render(request, 'blog/cursos_disponibles.html', context={"cursos": curso})
 
+@login_required
 def agregar_curso(request):
     if request.method=="POST":
         form = CursoForm(request.POST)
@@ -58,6 +60,7 @@ def profesores(request):
     profesor = Profesor.objects.all()
     return render(request, 'blog/profesores.html', context={"profesores": profesor})
 
+@login_required
 def agregar_profesor(request):
     if request.method=="POST":
         form = ProfesorForm(request.POST)
@@ -99,7 +102,7 @@ def estudiantes(request):
 
     return render(request, 'blog/estudiantes.html', contexto)
 
-
+@login_required
 def agregar_estudiante(request):
     if request.method=="POST":
         form = EstudianteForm(request.POST)
